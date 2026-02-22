@@ -1,4 +1,5 @@
 import { Filter, Heart, Sparkles } from "lucide-react";
+import { FullBleed } from "@/components/FullBleed/FullBleed";
 import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { SectionSeparator } from "@/components/SectionSeparator/SectionSeparator";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,9 @@ export default function Home() {
         </Field>
       </section>
 
-      <SectionSeparator />
+      <FullBleed>
+        <SectionSeparator />
+      </FullBleed>
 
       {/* Feature Section */}
       <section
@@ -51,7 +54,9 @@ export default function Home() {
         />
       </section>
 
-      <SectionSeparator />
+      <FullBleed>
+        <SectionSeparator />
+      </FullBleed>
 
       {/* CTA Section */}
       <section className={cn("mt-25 mb-15")}>

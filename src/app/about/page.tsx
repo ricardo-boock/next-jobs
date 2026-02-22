@@ -66,21 +66,18 @@ export default function About() {
         applications.
       </p>
 
-      <ButtonGroup className={cn("mt-10")}>
-        <ButtonGroup>
-          <LinkButton href="/jobs">Browse Jobs</LinkButton>
-        </ButtonGroup>
-        <ButtonGroup>
-          <LinkButton
-            href="https://github.com/ricardo-boock/next-jobs"
-            target="_blank"
-            variant="outline"
-          >
-            View on GitHub
-            <ExternalLink />
-          </LinkButton>
-        </ButtonGroup>
-      </ButtonGroup>
+      <div className={cn("mt-10 flex gap-3 flex-wrap")}>
+        <LinkButton href="/jobs">Browse Jobs</LinkButton>
+
+        <LinkButton
+          href="https://github.com/ricardo-boock/next-jobs"
+          target="_blank"
+          variant="outline"
+        >
+          View on GitHub
+          <ExternalLink className="ml-2 h-4 w-4" />
+        </LinkButton>
+      </div>
     </>
   );
 }
