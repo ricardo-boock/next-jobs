@@ -117,17 +117,50 @@
 }
 
 @layer base {
+  @media (min-width: 640px) {
+    .page-container {
+      --page-max: 640px;
+    }
+  }
+  @media (min-width: 768px) {
+    .page-container {
+      --page-max: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .page-container {
+      --page-max: 1024px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .page-container {
+      --page-max: 1280px;
+    }
+  }
+  @media (min-width: 1536px) {
+    .page-container {
+      --page-max: 1536px;
+    }
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
   .page-container {
-    @apply container mx-auto px-4;
+    --page-pad: 1rem;
+    width: 100%;
+    margin-inline: auto;
+    max-width: var(--page-max);
+    padding-inline: var(--page-pad);
   }
 }

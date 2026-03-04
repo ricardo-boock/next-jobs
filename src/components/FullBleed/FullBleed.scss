@@ -1,0 +1,24 @@
+header:has(.full-bleed),
+main:has(.full-bleed),
+footer:has(.full-bleed) {
+  --content-pad: var(--page-pad, 1rem);
+  --content-max: var(--page-max, 100%);
+
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--content-pad), 1fr)
+    [content-start] minmax(0, var(--content-max))
+    [content-end] minmax(var(--content-pad), 1fr)
+    [full-end];
+
+  max-width: none;
+  padding-inline: 0;
+
+  > * {
+    grid-column: content-start / content-end;
+  }
+
+  > .full-bleed {
+    grid-column: full-start / full-end;
+  }
+}
