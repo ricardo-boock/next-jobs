@@ -1,10 +1,8 @@
 import { Filter, Heart, Sparkles } from "lucide-react";
 import { FullBleed } from "@/components/FullBleed/FullBleed";
 import { LinkButton } from "@/components/LinkButton/LinkButton";
+import { SearchBarNavigate } from "@/components/SearchBar/SearchBarNavigate";
 import { SectionSeparator } from "@/components/SectionSeparator/SectionSeparator";
-import { Button } from "@/components/ui/button";
-import { Field } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import { Usp } from "@/components/Usp/Usp";
 import { cn } from "@/lib/utils";
 
@@ -20,13 +18,7 @@ export default function Home() {
           Search and filter remote job opportunities from top companies. Save
           your favorites and never miss the perfect position.
         </p>
-        <Field
-          className={cn("mt-7 max-w-[70ch] mx-auto")}
-          orientation={"horizontal"}
-        >
-          <Input type="search" placeholder="Search keywords..." />
-          <Button>Search</Button>
-        </Field>
+        <SearchBarNavigate targetUrl="/jobs" />
       </section>
 
       <FullBleed>
@@ -38,17 +30,17 @@ export default function Home() {
         className={cn("my-25 flex justify-center gap-10 flex-col md:flex-row")}
       >
         <Usp
-          icon={<Sparkles className="w-6 h-6 text-blue-600" />}
+          icon={<Sparkles className={cn("w-6 h-6 text-blue-600")} />}
           title="Smart Search"
           description="Find relevant jobs quickly with our intelligent keyword search and filtering."
         />
         <Usp
-          icon={<Filter className="w-6 h-6 text-blue-600" />}
+          icon={<Filter className={cn("w-6 h-6 text-blue-600")} />}
           title="Advanced Filters"
           description="Narrow down results by category, company, and more to find your ideal position."
         />
         <Usp
-          icon={<Heart className="w-6 h-6 text-blue-600" />}
+          icon={<Heart className={cn("w-6 h-6 text-blue-600")} />}
           title="Save Favorites"
           description="Bookmark interesting jobs and keep track of opportunities you want to apply for."
         />
