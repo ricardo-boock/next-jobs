@@ -1,29 +1,32 @@
+import Link from "next/link";
+import { ComponentPropsWithoutRef, HTMLAttributeAnchorTarget } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/dist/client/link";
 
-type LinkButtonProps = {
-  children?: React.ReactNode;
-  className?: string;
-  href: string;
-  target?: "_blank" | "_self" | "_parent" | "_top";
-  variant?: "outline" | "secondary" | "ghost" | "destructive" | "link";
+type LinkButtonProps = Omit<
+  ComponentPropsWithoutRef<typeof Button>,
+  "asChild"
+> & {
+  href: ComponentPropsWithoutRef<typeof Link>["href"];
+  target?: HTMLAttributeAnchorTarget;
 };
 
-export const LinkButton = (props: LinkButtonProps) => {
+export function LinkButton({
+  href,
+  target,
+  rel,
+  className,
+  children,
+  ...buttonProps
+}: LinkButtonProps) {
+  const safeRel: string | undefined =
+    target === "_blank" ? (rel ?? "noopener noreferrer") : rel;
+
   return (
-    <Button
-      asChild
-      variant={props.variant}
-      className={cn("w-fit", props.className)}
-    >
-      <Link
-        href={props.href}
-        target={props.target}
-        rel={props.target === "_blank" ? "noopener noreferrer" : undefined}
-      >
-        {props.children}
+    <Button asChild className={cn("w-fit", className)} {...buttonProps}>
+      <Link href={href} target={target} rel={safeRel}>
+        {children}
       </Link>
     </Button>
   );
-};
+}

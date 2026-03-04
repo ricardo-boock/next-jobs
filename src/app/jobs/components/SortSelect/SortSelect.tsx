@@ -8,15 +8,14 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
-type SortOptions = "newest" | "oldest" | "title";
+type SortSelectOptions = "newest" | "oldest" | "title";
 
-export function Sort({
-  value,
-  onChange,
-}: {
-  value: SortOptions;
-  onChange: (value: SortOptions) => void;
-}) {
+type SortSelectProps = {
+  value: SortSelectOptions;
+  onChange: (value: SortSelectOptions) => void;
+};
+
+export function SortSelect({ value, onChange }: SortSelectProps) {
   return (
     <Select value={value} onValueChange={(v) => onChange(v as never)}>
       <SelectTrigger className={cn("w-full")}>

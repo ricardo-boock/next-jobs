@@ -1,30 +1,22 @@
 export interface RemotiveResponse {
-  "00-warning"?: string;
-  jobs: Job[];
-}
-
-export interface Job {
-  id: number;
-  url: string;
-  title: string;
-  company_name: string;
-  company_logo_url: string | null;
-  category: string;
-  tags: string[];
-  job_type: string;
-  publication_date: string;
-  candidate_required_location: string;
-  salary?: string | null;
-  description: string;
+  readonly "00-warning"?: string;
+  readonly jobs: JobDetails[];
 }
 
 export interface JobPreview {
-  id: number;
-  title: string;
-  company_name: string;
-  category: string;
-  job_type: string;
-  publication_date: string;
-  candidate_required_location: string;
-  salary?: string | null;
+  readonly id: number;
+  readonly title: string;
+  readonly company_name: string;
+  readonly category: string;
+  readonly tags: string[];
+  readonly job_type: string;
+  readonly publication_date: string;
+  readonly candidate_required_location: string;
+  readonly salary?: string;
+}
+
+export interface JobDetails extends JobPreview {
+  readonly url: string;
+  readonly company_logo_url?: string;
+  readonly description: string;
 }

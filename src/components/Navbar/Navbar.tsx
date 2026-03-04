@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
   const pathname = usePathname();
-  const links = [
+  const links: { href: string; label: string }[] = [
     { href: "/jobs", label: "Jobs" },
     { href: "/favorites", label: "Favorites" },
     { href: "/about", label: "About" },

@@ -8,10 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 export function normalizeSalary(input: string | null): string | null {
   if (!input) return null;
 
-  const raw = input.trim();
+  const raw: string | null = input.trim();
   if (!raw) return null;
 
-  let s = raw;
+  let s: string = raw;
 
   // Very conservative, low-risk fixes
   s = s.replace(/(\d+(?:[.,]\d+)?)\$/g, "$$$1"); // 14$ -> $14
