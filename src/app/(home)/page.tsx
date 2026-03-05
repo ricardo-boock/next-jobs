@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className={cn("mt-15 mb-25")}>
+      <section className={cn("md:mt-15 md:mb-25")}>
         <h1 className={cn("text-6xl font-bold text-center")}>
           Find Remote Jobs Faster.
         </h1>
@@ -27,7 +27,9 @@ export default function Home() {
 
       {/* Feature Section */}
       <section
-        className={cn("my-25 flex justify-center gap-10 flex-col md:flex-row")}
+        className={cn(
+          "md:my-25 flex justify-center gap-10 flex-col md:flex-row",
+        )}
       >
         <Usp
           icon={<Sparkles className={cn("w-6 h-6 text-blue-600")} />}
@@ -51,14 +53,17 @@ export default function Home() {
       </FullBleed>
 
       {/* CTA Section */}
-      <section className={cn("mt-25 mb-15")}>
-        <p className={cn("text-4xl font-bold text-center")}>
+      <section className={cn("md:mt-25 md:mb-15")}>
+        <p className={cn("text-4xl font-bold text-center leading-none")}>
           Ready to start your job search?
         </p>
         <p className={cn("text-center text-lg mt-7 max-w-[70ch] mx-auto")}>
           Browse hundreds of remote positions from companies around the world.
         </p>
-        <LinkButton className={cn("mx-auto mt-7 block")} href="/jobs">
+        <LinkButton
+          className={cn("mx-auto mt-7 block no-underline")}
+          href="/jobs"
+        >
           Browse Jobs
         </LinkButton>
       </section>

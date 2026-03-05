@@ -5,30 +5,18 @@ import { cn } from "@/lib/utils";
 export default function About() {
   return (
     <>
-      <h1
-        className={cn(
-          "scroll-m-20 pb-3 text-4xl font-bold tracking-tight text-balance",
-        )}
-      >
-        About Next Jobs
-      </h1>
+      <h1>About Next Jobs</h1>
 
-      <p className={cn("mt-6")}>
+      <p>
         NextJobs is a modern job board platform designed to help you discover
         remote job opportunities from companies around the world. Our clean,
         minimal interface makes it easy to search, filter, and save jobs that
         match your interests.
       </p>
 
-      <h2
-        className={cn(
-          "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-7 first:mt-0",
-        )}
-      >
-        Features
-      </h2>
+      <h2 className={cn("border-b")}>Features</h2>
 
-      <ul className={cn("my-6 ml-6 list-disc")}>
+      <ul>
         <li>Smart search functionality to find relevant positions quickly</li>
         <li>Advanced filters by category, company, and keywords</li>
         <li>Save your favorite jobs for easy access later</li>
@@ -36,29 +24,17 @@ export default function About() {
         <li>Responsive layout that works on desktop and mobile</li>
       </ul>
 
-      <h2
-        className={cn(
-          "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-7 first:mt-0",
-        )}
-      >
-        Data Source
-      </h2>
+      <h2 className={cn("border-b")}>Data Source</h2>
 
-      <p className={cn("mt-6")}>
+      <p>
         Job listings on NextJobs are provided by Remotive, a trusted platform
         for remote job opportunities. We display curated remote positions from
         companies across various industries and locations.
       </p>
 
-      <h2
-        className={cn(
-          "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mt-7 first:mt-0",
-        )}
-      >
-        Open Source
-      </h2>
+      <h2 className={cn("border-b")}>Open Source</h2>
 
-      <p className={cn("mt-6")}>
+      <p>
         This project is built as a portfolio demonstration of modern web
         development practices. The codebase showcases React, TypeScript,
         Tailwind CSS, and other contemporary technologies used in production
@@ -66,9 +42,12 @@ export default function About() {
       </p>
 
       <div className={cn("mt-10 flex gap-3 flex-wrap")}>
-        <LinkButton href="/jobs">Browse Jobs</LinkButton>
+        <LinkButton className={cn("no-underline")} href="/jobs">
+          Browse Jobs
+        </LinkButton>
 
         <LinkButton
+          className={cn("no-underline")}
           href="https://github.com/ricardo-boock/next-jobs"
           target="_blank"
           variant="outline"

@@ -26,12 +26,12 @@ export default function RootLayout({
         >
           <p className={cn("page-container text-sm text-gray-500")}>
             Job data provided by{" "}
-            <Link className={cn("underline")} href="https://remotive.com">
+            <Link className={cn("text-inherit")} href="https://remotive.com">
               Remotive
             </Link>{" "}
             &#x2022; View on{" "}
             <Link
-              className={cn("underline")}
+              className={cn("text-inherit")}
               href="https://github.com/ricardo-boock/next-jobs"
               target="_blank"
               rel="noopener noreferrer"
