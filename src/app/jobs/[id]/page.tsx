@@ -9,7 +9,6 @@ import {
   Heart,
   MapPin,
 } from "lucide-react";
-import Image from "next/image";
 import { use, useEffect, useState } from "react";
 import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { Share } from "@/components/Share/Share";
