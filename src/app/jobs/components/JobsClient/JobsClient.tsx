@@ -3,14 +3,15 @@
 import { Heart } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
+import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { Field } from "@/components/ui/field";
+import { filterByKey, filterByKeywords } from "@/lib/filter";
 import { cn } from "@/lib/utils";
 import { JobPreview } from "@/types/remotive";
-import { FilterJobs } from "../FilterJobs/FilterJobs";
+import { FilterJobsCard } from "../FilterJobs/FilterJobsCard";
+import { FilterJobsDialog } from "../FilterJobs/FilterJobsDialog";
 import { SortSelect } from "../SortSelect/SortSelect";
 import { JobItem } from "../JobItem/JobItem";
-import { filterByKey, filterByKeywords } from "@/lib/filter";
-import { LinkButton } from "@/components/LinkButton/LinkButton";
 
 export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
   const searchParams = useSearchParams();
@@ -62,20 +63,30 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
   }, [filteredJobs, sortedBy]);
 
   return (
-    <div className={cn("grid grid-cols-1 md:grid-cols-4 gap-10")}>
+    <div className={cn("lg:grid lg:grid-cols-4 lg:gap-10")}>
       {/* Filter section */}
-      <aside className={cn("md:col-span-1 grid")}>
-        <FilterJobs jobs={jobs} />
+      <aside className={cn("hidden lg:block lg:col-span-1")}>
+        <FilterJobsCard title="Filters" jobs={jobs} />
       </aside>
 
+      <FilterJobsDialog
+        className={cn("lg:hidden")}
+        title="Filters"
+        jobs={jobs}
+      />
+
       {/* Job list section */}
-      <section className={cn("md:col-span-3")}>
-        <h1 className={cn("text-3xl font-bold mb-2")}>Jobs</h1>
+      <section className={cn("lg:col-span-3")}>
+        <h1>Jobs</h1>
         <p className={cn("mb-4")}>
           Browse remote job opportunities from top companies.
         </p>
 
-        <div className={cn("flex items-center justify-between mb-6")}>
+        <div
+          className={cn(
+            "flex items-center justify-between flex-wrap mb-6 gap-3",
+          )}
+        >
           <span className={cn("whitespace-nowrap")}>
             {filteredJobs.length} {filteredJobs.length !== 1 ? "jobs" : "job"}{" "}
             found
@@ -83,7 +94,11 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
 
           <Field orientation="horizontal" className={cn("w-auto")}>
             <SortSelect value={sortedBy} onChange={setSortedBy} />
-            <LinkButton variant="outline" href="/favorites">
+            <LinkButton
+              className={cn("no-underline")}
+              variant="outline"
+              href="/favorites"
+            >
               <Heart />
               Favorites
             </LinkButton>
