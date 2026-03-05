@@ -4,12 +4,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SubmitEventHandler, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
-import { cn } from "@/lib/utils";
-import { JobPreview } from "@/types/remotive";
 import { SearchBarFilter } from "@/components/SearchBar/SearchBarFilter";
 import { FilterSelect } from "@/components/FilterSelect/FilterSelect";
+import { FilterJobsProps } from "./FilterJobsTypes";
 
-export const FilterJobs = ({ jobs }: { jobs: JobPreview[] }) => {
+export const FilterJobs = ({ jobs, onApplied }: FilterJobsProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -38,12 +37,14 @@ export const FilterJobs = ({ jobs }: { jobs: JobPreview[] }) => {
     e.preventDefault();
     e.stopPropagation();
     pushQuery(filter);
+    onApplied?.();
   };
 
   const handleReset = () => {
     const nextFilter = { keywords: "", category: null, company_name: null };
     setFilter(nextFilter);
     pushQuery(nextFilter);
+    onApplied?.();
   };
 
   const pushQuery = (nextFilter: {
@@ -66,8 +67,6 @@ export const FilterJobs = ({ jobs }: { jobs: JobPreview[] }) => {
   return (
     <form onSubmit={handleSubmit}>
       <FieldGroup>
-        <h2 className={cn("text-xl font-bold")}>Filters</h2>
-
         <SearchBarFilter
           id="keywords"
           label="Keywords"
@@ -77,7 +76,6 @@ export const FilterJobs = ({ jobs }: { jobs: JobPreview[] }) => {
           }
           placeholder="eg. Frontend, React..."
         />
-
         <FilterSelect
           id="category"
           label="Category"
@@ -89,7 +87,6 @@ export const FilterJobs = ({ jobs }: { jobs: JobPreview[] }) => {
           placeholder="All categories"
           emptyValue="No categories found."
         />
-
         <FilterSelect
           id="company_name"
           label="Company name"
@@ -101,7 +98,6 @@ export const FilterJobs = ({ jobs }: { jobs: JobPreview[] }) => {
           placeholder="All companies"
           emptyValue="No companies found."
         />
-
         <Field>
           <Button type="submit">Apply filters</Button>
           <Button type="button" variant="outline" onClick={handleReset}>

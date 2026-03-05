@@ -18,7 +18,7 @@ type SortSelectProps = {
 export function SortSelect({ value, onChange }: SortSelectProps) {
   return (
     <Select value={value} onValueChange={(v) => onChange(v as never)}>
-      <SelectTrigger className={cn("w-full")}>
+      <SelectTrigger className={cn("w-[15ch]")}>
         <SelectValue />
       </SelectTrigger>
       <SelectContent position="popper">
