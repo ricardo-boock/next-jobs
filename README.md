@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next Jobs
+
+A modern remote job board application built with Next.js, designed to demonstrate modern frontend architecture, filtering, sorting, responsive UI, and clean component design.
+
+The application allows users to browse remote job listings, filter and sort them, and save favorite jobs locally in the browser.
+
+This project was built as part of a developer portfolio to showcase modern React and Next.js development practices.
+
+## Live Demo
+
+Deployed on [Vercel](https://next-jobs.vercel.app).
+
+## Features
+
+- Browse remote job listings
+- Search jobs by keywords
+- Filter by category and company
+- Sort jobs by:
+  - newest
+  - oldest
+  - title
+- Save favorite jobs
+- Favorites stored in localStorage
+- Responsive UI (desktop + mobile)
+- Mobile navigation drawer
+- Clean card-based job layout
+- Accessible UI components
+
+## Tech Stack
+
+### Framework
+- Next.js (App Router)
+
+### Language
+- TypeScript
+
+### UI
+- React
+- Tailwind CSS
+- shadcn/ui
+- Lucide Icons
+
+### State / Data
+- React Hooks
+- Browser localStorage
+
+### APIs
+- Remotive Jobs API
+
+### Tooling
+- ESLint
+- Prettier
+- TypeScript
+
+### Deployment
+- Vercel
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ricardo-boock/next-jobs.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Navigate into the project
+```bash
+cd next-jobs
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Install dependencies
+```bash
+npm install
+```
+### 4. Start the development server
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open: 
 
-## Learn More
+```bash
+http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Data Source
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Job listings are provided by the **Remotive Jobs API**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+https://remotive.com/api/remote-jobs
+```
 
-## Deploy on Vercel
+All job listing data originates from this external API.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Favorites System
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Users can save jobs as favorites.
+
+Favorites are stored locally in the browser using:
+
+```bash
+localStorage
+```
+
+Stored data includes only:
+
+```bash
+job ids
+```
+
+No favorites data is transmitted to any server.
+
+## Deployment
+
+The application is deployed using Vercel.
+
+Typical deployment workflow:
+
+```bash
+GitHub → Vercel → Production
+```
+
+Every push can automatically trigger a new deployment.
+
+## Legal Notice
+
+This project includes:
+
+- Impressum
+- Privacy Policy
+
+These pages exist to comply with German and EU legal requirements for publicly accessible websites.
+
+## License
+
+```bash
+© 2026 Ricardo Boock
+All rights reserved.
+```
+
+This repository is published for portfolio and demonstration purposes only.
+
+You may not copy, modify, distribute, or reuse this code without explicit permission from the author.
+
+## Author
+
+Ricardo Boock
+
+GitHub
+
+```bash
+https://github.com/ricardo-boock
+```
+
+## Portfolio
+
+This project demonstrates experience with:
+- Next.js App Router
+- component architecture
+- React hooks
+- filtering and sorting patterns
+- responsive UI design
+- TypeScript
+- modern frontend tooling
