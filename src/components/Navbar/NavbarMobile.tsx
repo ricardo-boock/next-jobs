@@ -54,7 +54,7 @@ export const NavbarMobile = ({ items }: NavbarMobileProps) => {
                       "font-medium transition-colors no-underline",
                       PADDING,
                       pathname === item.href
-                        ? "text-primary"
+                        ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:text-foreground",
                       !isLast && "border-b border-border",
                     )}

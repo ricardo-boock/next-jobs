@@ -14,6 +14,12 @@ export const Navbar = () => {
     { href: "/about", label: "About" },
   ];
 
+  const mobileLinks: { href: string; label: string }[] = [
+    ...links,
+    { href: "/privacy", label: "Privacy" },
+    { href: "/imprint", label: "Imprint" },
+  ];
+
   return (
     <>
       <nav className={cn("page-container py-3 flex items-center gap-4")}>
@@ -41,7 +47,7 @@ export const Navbar = () => {
           </LinkButton>
         </div>
 
-        <NavbarMobile items={links} />
+        <NavbarMobile items={mobileLinks} />
       </nav>
     </>
   );
