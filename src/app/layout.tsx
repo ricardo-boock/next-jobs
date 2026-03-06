@@ -7,7 +7,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Next Jobs",
-  description: "Get you next remote job",
+  description: "Get your next remote job",
 };
 
 export default function RootLayout({
