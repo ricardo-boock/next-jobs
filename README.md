@@ -8,7 +8,7 @@ This project was built as part of a developer portfolio to showcase modern React
 
 ## Live Demo
 
-Deployed on [Vercel](https://next-jobs.vercel.app).
+Deployed on [Vercel](https://next-jobs-cyan.vercel.app/).
 
 ## Features
 
