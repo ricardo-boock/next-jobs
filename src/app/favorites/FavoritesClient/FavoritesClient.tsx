@@ -1,11 +1,9 @@
 "use client";
 
-import { Heart } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
-import { LinkButton } from "@/components/LinkButton/LinkButton";
-import { FilterJobsCard } from "@/components/FilterJobs/FilterJobsCard";
 import { FilterJobsDialog } from "@/components/FilterJobs/FilterJobsDialog";
+import { FilterJobsCard } from "@/components/FilterJobs/FilterJobsCard";
 import { JobItem } from "@/components/JobItem/JobItem";
 import { SortSelect } from "@/components/SortSelect/SortSelect";
 import { Field } from "@/components/ui/field";
@@ -16,7 +14,9 @@ import { getSortedJobs } from "@/lib/sort";
 import { cn } from "@/lib/utils";
 import { JobPreview } from "@/types/remotive";
 
-export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
+type FavoritesClientProps = { jobs: JobPreview[] };
+
+export const FavoritesClient = ({ jobs }: FavoritesClientProps) => {
   const searchParams = useSearchParams();
   const [sortedBy, setSortedBy] = useState<"newest" | "oldest" | "title">(
     "newest",
@@ -26,17 +26,25 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
   const category: string | null = searchParams.get("category");
   const company_name: string | null = searchParams.get("company_name");
 
+  const favoriteIds: number[] = useFavorites();
+  const favoriteIdSet: Set<number> = useMemo(
+    () => new Set(favoriteIds),
+    [favoriteIds],
+  );
+
+  const favoriteJobs = useMemo(() => {
+    return jobs.filter((job) => favoriteIdSet.has(job.id));
+  }, [jobs, favoriteIdSet]);
+
   const filteredJobs: JobPreview[] = useMemo(
-    () => getFilteredJobs(jobs, keywords, category, company_name),
-    [jobs, keywords, category, company_name],
+    () => getFilteredJobs(favoriteJobs, keywords, category, company_name),
+    [favoriteJobs, keywords, category, company_name],
   );
 
   const sortedJobs: JobPreview[] = useMemo(
     () => getSortedJobs(filteredJobs, sortedBy),
     [filteredJobs, sortedBy],
   );
-
-  const favorites: number[] = useFavorites();
 
   return (
     <div className={cn("lg:grid lg:grid-cols-4 lg:gap-10")}>
@@ -53,9 +61,10 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
 
       {/* Job list section */}
       <section className={cn("lg:col-span-3")}>
-        <h1>Jobs</h1>
+        <h1>Favorites</h1>
         <p className={cn("mb-4")}>
-          Browse remote job opportunities from top companies.
+          Browse your saved favorites and never miss the perfect remote job
+          opportunities from top companies.
         </p>
 
         <div
@@ -70,14 +79,6 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
 
           <Field orientation="horizontal" className={cn("w-auto")}>
             <SortSelect value={sortedBy} onChange={setSortedBy} />
-            <LinkButton
-              className={cn("no-underline")}
-              variant="outline"
-              href="/favorites"
-            >
-              <Heart />
-              Favorites
-            </LinkButton>
           </Field>
         </div>
 
@@ -86,7 +87,7 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
             <JobItem
               key={job.id}
               job={job}
-              isFav={favorites.includes(job.id)}
+              isFav={favoriteIds.includes(job.id)}
               onToggleFav={() => toggleFavorite(job.id)}
             />
           ))}
@@ -94,4 +95,4 @@ export default function JobsClient({ jobs }: { jobs: JobPreview[] }) {
       </section>
     </div>
   );
-}
+};

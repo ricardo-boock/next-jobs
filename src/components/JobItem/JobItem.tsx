@@ -1,12 +1,18 @@
-import { Heart, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cleanJobTitle, cn, normalizeJobSalary } from "@/lib/utils";
 import { JobPreview } from "@/types/remotive";
+import { FavButtonTooltip } from "./FavButtonTooltip";
 
-export const JobItem = ({ job }: { job: JobPreview }) => {
+type JobItemProps = {
+  job: JobPreview;
+  isFav: boolean;
+  onToggleFav: () => void;
+};
+
+export const JobItem = ({ job, isFav, onToggleFav }: JobItemProps) => {
   return (
     <Card key={job.id} className={cn("gap-0 relative")}>
       <CardHeader className={cn("flex justify-between mb-2 md:mb-0")}>
@@ -14,15 +20,7 @@ export const JobItem = ({ job }: { job: JobPreview }) => {
           {cleanJobTitle(job.title)}
         </CardTitle>
 
-        <Button
-          variant="link"
-          size="icon"
-          className={cn(
-            "rounded-lg text-muted-foreground hover:text-red-500 hover:bg-gray-100 transition-colors absolute right-0 -translate-x-1/2",
-          )}
-        >
-          <Heart className={cn("w-2 h-2")} />
-        </Button>
+        <FavButtonTooltip isFav={isFav} onToggleFav={onToggleFav} />
       </CardHeader>
 
       <CardContent className={cn("grid gap-1")}>

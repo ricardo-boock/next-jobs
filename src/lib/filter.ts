@@ -124,3 +124,24 @@ export function filterByKeywords(
 
   return fuse.search(query as unknown as Expression).map((r) => r.item);
 }
+
+export function getFilteredJobs(
+  jobs: JobPreview[],
+  keywords: string | null,
+  category: string | null,
+  company_name: string | null,
+): JobPreview[] {
+  const byKeywords: JobPreview[] = filterByKeywords(jobs, keywords);
+  const byCategory: JobPreview[] = filterByKey(
+    byKeywords,
+    "category",
+    category,
+  );
+  const byCompany: JobPreview[] = filterByKey(
+    byCategory,
+    "company_name",
+    company_name,
+  );
+
+  return byCompany;
+}

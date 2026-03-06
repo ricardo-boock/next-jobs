@@ -165,4 +165,10 @@
     max-width: var(--page-max);
     padding-inline: var(--page-pad);
   }
+
+  @media (hover: none) {
+    [data-radix-tooltip-content] {
+      display: none !important;
+    }
+  }
 }

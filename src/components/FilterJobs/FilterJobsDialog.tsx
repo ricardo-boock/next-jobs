@@ -26,9 +26,8 @@ export const FilterJobsDialog = ({
       <Dialog open={open} onOpenChange={setOpen} modal={false}>
         <DialogTrigger asChild>
           <Button
-            variant="outline"
             className={cn(
-              "aspect-square p-0 rounded-full size-14 fixed left-4 bottom-7 md:hidden z-20 shadow-lg",
+              "aspect-square p-0 rounded-full size-14 fixed left-4 bottom-7 z-20 shadow-lg hover:bg-primary",
             )}
           >
             <span className={cn("flex items-center")}>

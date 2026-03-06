@@ -30,6 +30,8 @@ import {
 import { type JobDetails } from "@/types/remotive";
 import { CompanyLogo } from "./components/CompanyLogo/CompanyLogo";
 import { JobMetaItem } from "./components/JobMetaItem/JobMetaItem";
+import { toggleFavorite } from "@/lib/favorites/favorites";
+import { useFavorites } from "@/lib/favorites/useFavorites";
 
 type JobDetailsClientProps = {
   params: Promise<{ id: string }>;
@@ -60,6 +62,8 @@ export default function Job({ params }: JobDetailsClientProps) {
       cancelled = true;
     };
   }, [id]);
+
+  const favorites = useFavorites();
 
   const sanitizedDescription = job ? cleanJobDescription(job.description) : "";
 
@@ -131,8 +135,14 @@ export default function Job({ params }: JobDetailsClientProps) {
               Apply Now
               <ExternalLink className={cn("w-4 h-4")} />
             </LinkButton>
-            <Button variant="outline">
-              <Heart className={cn("w-5 h-5")} />
+            <Button variant="outline" onClick={() => toggleFavorite(job.id)}>
+              <Heart
+                className={cn(
+                  "w-5 h-5",
+                  favorites.includes(job.id) && "text-red-500",
+                )}
+                fill={favorites.includes(job.id) ? "red" : "none"}
+              />
               Save
             </Button>
             <Share
