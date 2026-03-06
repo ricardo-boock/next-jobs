@@ -11,8 +11,8 @@ This project was built as part of a developer portfolio to showcase modern React
 Deployed on [Vercel](https://next-jobs-cyan.vercel.app/).
 
 <p align="center">
-  <img src="./screenshots/homepage_desktop.png" height="300" style="margin-right: 20"/>
-  <img src="./screenshots/homepage_mobile.png" height="300"/>
+  <img src="./screenshots/homepage_desktop.png" height="300" />
+  <img src="./screenshots/homepage_mobile.png" height="300" />
 </p>
 
 ## Features
