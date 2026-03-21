@@ -24,13 +24,11 @@ export const FavButtonTooltip = ({
       <TooltipTrigger asChild>
         <FavButton isFav={isFav} onToggleFav={onToggleFav} />
       </TooltipTrigger>
-      {canHover && (
-        <TooltipContent>
-          <p className={cn("m-0")}>
-            {isFav ? "Remove from favorites" : "Add to favorites"}
-          </p>
-        </TooltipContent>
-      )}
+      <TooltipContent>
+        <p className={cn("m-0")}>
+          {isFav ? "Remove from favorites" : "Add to favorites"}
+        </p>
+      </TooltipContent>
     </Tooltip>
   ) : (
     <FavButton isFav={isFav} onToggleFav={onToggleFav} />
