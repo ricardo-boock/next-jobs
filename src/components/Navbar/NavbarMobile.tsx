@@ -24,7 +24,7 @@ export const NavbarMobile = ({ items }: NavbarMobileProps) => {
     <div className={cn("md:hidden ml-auto")}>
       <Drawer direction="right">
         <DrawerTrigger asChild>
-          <Menu />
+          <Menu role="navigation" />
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader className={cn("border-b border-border", PADDING)}>
