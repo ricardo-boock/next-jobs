@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import "@/lib/env";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Next Jobs",
   description: "Get your next remote job",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
@@ -22,15 +27,15 @@ export default function RootLayout({
           <header className={cn("border-b border-b-gray-200")}>
             <Navbar />
           </header>
-          <main className={cn("page-container py-10")}>{children}</main>
+          <main className={cn("page-container py-5 md:py-10")}>{children}</main>
           <footer
             className={cn(
-              "border-t border-t-gray-200 py-10 mt-auto text-center",
+              "border-t border-t-gray-200 py-5 md:py-10 mt-auto text-center",
             )}
           >
             <p
               className={cn(
-                "page-container text-sm text-gray-500 flex flex-wrap justify-center gap-x-2 gap-y-1",
+                "page-container text-sm text-gray-500 flex flex-wrap justify-center gap-x-2 gap-y-1 my-0",
               )}
             >
               Job data provided by{" "}
