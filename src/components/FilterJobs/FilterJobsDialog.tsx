@@ -1,3 +1,6 @@
+import { Filter } from "lucide-react";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,10 +11,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+
 import { FilterJobs } from "./FilterJobs";
-import { FilterJobsDialogProps } from "./FilterJobsTypes";
-import { Filter } from "lucide-react";
-import { useState } from "react";
+import { FilterJobsDialogProps } from "./FilterJobs.types";
+
+import "./FilterJobsDialog.scss";
 
 export const FilterJobsDialog = ({
   className,
@@ -22,7 +26,7 @@ export const FilterJobsDialog = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className={cn(className)}>
+    <>
       <Dialog open={open} onOpenChange={setOpen} modal={false}>
         <DialogTrigger asChild>
           <Button
@@ -43,7 +47,11 @@ export const FilterJobsDialog = ({
             onClick={() => setOpen(false)}
           />
         )}
-        <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
+        <DialogContent
+          id="filter-jobs-dialog"
+          className={cn(className)}
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
           <DialogHeader>
             <DialogTitle className={cn("text-2xl mt-0")}>{title}</DialogTitle>
             {description && (
@@ -53,6 +61,6 @@ export const FilterJobsDialog = ({
           <FilterJobs jobs={jobs} onApplied={() => setOpen(false)} />
         </DialogContent>
       </Dialog>
-    </div>
+    </>
   );
 };

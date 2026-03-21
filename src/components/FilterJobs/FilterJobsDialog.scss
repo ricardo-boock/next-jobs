@@ -1,0 +1,3 @@
+body:has(#filter-jobs-dialog[data-state="open"]) {
+    overflow: hidden;
+}
