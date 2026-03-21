@@ -9,10 +9,13 @@ import {
   Heart,
   MapPin,
 } from "lucide-react";
-import { use, useEffect, useState } from "react";
+import { notFound } from "next/navigation";
+import { Suspense, use, useEffect, useState } from "react";
+
 import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { Share } from "@/components/Share/Share";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -20,18 +23,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
+import { toggleFavorite } from "@/lib/favorites";
 import {
   cleanJobDescription,
   cleanJobTitle,
   cn,
   normalizeJobSalary,
 } from "@/lib/utils";
+
 import { type JobDetails } from "@/types/remotive";
+import { useFavorites } from "@/hooks/useFavorites";
+
 import { CompanyLogo } from "./components/CompanyLogo/CompanyLogo";
 import { JobMetaItem } from "./components/JobMetaItem/JobMetaItem";
-import { toggleFavorite } from "@/lib/favorites/favorites";
-import { useFavorites } from "@/lib/favorites/useFavorites";
+import Loading from "./loading";
 
 type JobDetailsClientProps = {
   params: Promise<{ id: string }>;
@@ -42,17 +48,26 @@ export default function Job({ params }: JobDetailsClientProps) {
 
   const [job, setJob] = useState<JobDetails | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [missing, setMissing] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
 
     fetch(`/api/jobs/${id}`)
       .then(async (result) => {
-        if (!result.ok) throw new Error(await result.text());
+        if (result.status === 404) {
+          if (!cancelled) setMissing(true);
+          return null;
+        }
+
+        if (!result.ok) {
+          throw new Error(await result.text());
+        }
+
         return result.json();
       })
       .then((job) => {
-        if (!cancelled) setJob(job);
+        if (!cancelled && job) setJob(job);
       })
       .catch((e) => {
         if (!cancelled) setError(String(e));
@@ -63,6 +78,10 @@ export default function Job({ params }: JobDetailsClientProps) {
     };
   }, [id]);
 
+  if (missing) {
+    notFound();
+  }
+
   const favorites = useFavorites();
 
   const sanitizedDescription = job ? cleanJobDescription(job.description) : "";
@@ -71,9 +90,9 @@ export default function Job({ params }: JobDetailsClientProps) {
   if (!job) return <div>Loading…</div>;
 
   return (
-    <>
+    <Suspense fallback={<Loading />}>
       <LinkButton
-        className={cn("no-underline absolute -translate-y-full -ml-3")}
+        className={cn("no-underline -mt-5 md:-mt-10 mb-2")}
         variant="link"
         href={"/jobs"}
       >
@@ -189,7 +208,7 @@ export default function Job({ params }: JobDetailsClientProps) {
         </Card>
         <Card>
           <CardHeader>
-            <h2 className={cn("my-0")}>Job Description</h2>
+            <h2 className={cn("my-0")}>Description</h2>
           </CardHeader>
           <CardContent>
             <div
@@ -201,6 +220,6 @@ export default function Job({ params }: JobDetailsClientProps) {
           </CardContent>
         </Card>
       </div>
-    </>
+    </Suspense>
   );
 }
