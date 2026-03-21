@@ -32,6 +32,7 @@ export const FilterJobsDialog = ({
           <Button
             className={cn(
               "aspect-square p-0 rounded-full size-14 fixed left-4 bottom-7 z-20 shadow-lg hover:bg-primary",
+              className,
             )}
           >
             <span className={cn("flex items-center")}>
