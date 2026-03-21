@@ -1,5 +1,7 @@
+"use client";
+
 import { useSyncExternalStore } from "react";
-import { FAVORITES_KEY } from "./favorites";
+import { FAVORITES_KEY } from "@/lib/favorites";
 
 function subscribe(callback: () => void): () => void {
   window.addEventListener("storage", callback);
@@ -27,8 +29,11 @@ export function useFavorites(): number[] {
   );
 
   try {
-    const parsed = JSON.parse(snapshot);
-    return Array.isArray(parsed) ? parsed : [];
+    const parsed: unknown = JSON.parse(snapshot);
+
+    return Array.isArray(parsed)
+      ? parsed.filter((item): item is number => typeof item === "number")
+      : [];
   } catch {
     return [];
   }

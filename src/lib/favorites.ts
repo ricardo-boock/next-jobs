@@ -3,7 +3,13 @@ export const FAVORITES_KEY = "favorites";
 export function getFavorites(): number[] {
   try {
     const raw = localStorage.getItem(FAVORITES_KEY);
-    return raw ? JSON.parse(raw) : [];
+    if (!raw) return [];
+
+    const parsed: unknown = JSON.parse(raw);
+
+    return Array.isArray(parsed)
+      ? parsed.filter((item): item is number => typeof item === "number")
+      : [];
   } catch {
     return [];
   }
