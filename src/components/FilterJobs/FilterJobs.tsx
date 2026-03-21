@@ -1,26 +1,24 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SubmitEventHandler, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { SearchBarFilter } from "@/components/SearchBar/SearchBarFilter";
 import { FilterSelect } from "@/components/FilterSelect/FilterSelect";
-import { FilterJobsProps } from "./FilterJobsTypes";
+import { useURLFilters } from "@/hooks/useURLFilters";
+import { FilterJobsProps } from "./FilterJobs.types";
 
 export const FilterJobs = ({ jobs, onApplied }: FilterJobsProps) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
+  const { params, update } = useURLFilters();
 
   const [filter, setFilter] = useState<{
     keywords: string;
     category: string | null;
     company_name: string | null;
   }>({
-    keywords: searchParams.get("keywords") ?? "",
-    category: searchParams.get("category") ?? null,
-    company_name: searchParams.get("company_name") ?? null,
+    keywords: params.get("keywords") ?? "",
+    category: params.get("category") ?? null,
+    company_name: params.get("company_name") ?? null,
   });
 
   const filterOptions: { categories: string[]; companies: string[] } = useMemo(
@@ -36,32 +34,15 @@ export const FilterJobs = ({ jobs, onApplied }: FilterJobsProps) => {
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    pushQuery(filter);
+    update({ ...filter, page: "1" });
     onApplied?.();
   };
 
   const handleReset = () => {
     const nextFilter = { keywords: "", category: null, company_name: null };
     setFilter(nextFilter);
-    pushQuery(nextFilter);
+    update({ ...nextFilter, page: "1" });
     onApplied?.();
-  };
-
-  const pushQuery = (nextFilter: {
-    keywords: string;
-    category: string | null;
-    company_name: string | null;
-  }) => {
-    const params = new URLSearchParams();
-
-    if (nextFilter.keywords.trim())
-      params.set("keywords", nextFilter.keywords.trim());
-    if (nextFilter.category) params.set("category", nextFilter.category);
-    if (nextFilter.company_name)
-      params.set("company_name", nextFilter.company_name);
-
-    const queryString = params.toString();
-    router.replace(queryString ? `${pathname}?${queryString}` : pathname);
   };
 
   return (
