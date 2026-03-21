@@ -10,6 +10,8 @@ type FavButtonProps = {
 export const FavButton = ({ isFav, onToggleFav }: FavButtonProps) => {
   return (
     <Button
+      type="button"
+      aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
       variant="link"
       size="icon"
       className={cn(
@@ -19,7 +21,11 @@ export const FavButton = ({ isFav, onToggleFav }: FavButtonProps) => {
       )}
       onClick={onToggleFav}
     >
-      <Heart className={cn("w-2 h-2")} fill={isFav ? "red" : "none"} />
+      <Heart
+        aria-hidden="true"
+        className={cn("w-2 h-2")}
+        fill={isFav ? "red" : "none"}
+      />
     </Button>
   );
 };

@@ -55,6 +55,7 @@ export const JobItem = ({ job, isFav, onToggleFav }: JobItemProps) => {
         </div>
         <div className={cn("flex items-end justify-between mt-2")}>
           <LinkButton
+            aria-label={`View details for ${cleanJobTitle(job.title)} at ${job.company_name}`}
             className={cn("no-underline")}
             variant="outline"
             href={`/jobs/${job.id}`}
