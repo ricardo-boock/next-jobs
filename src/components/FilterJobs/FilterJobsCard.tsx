@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { FilterJobs } from "./FilterJobs";
-import { FilterJobsCardProps } from "./FilterJobsTypes";
+import { FilterJobsCardProps } from "./FilterJobs.types";
 
 export const FilterJobsCard = ({
   className,

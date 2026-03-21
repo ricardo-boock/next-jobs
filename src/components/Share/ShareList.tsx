@@ -12,7 +12,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from "next-share";
-import { ShareListProps } from "./ShareTypes";
+import { ShareListProps } from "./Share.types";
 
 export const ShareList = ({
   socialTitle,

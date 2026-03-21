@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ShareButton } from "./ShareButton";
 import { ShareList } from "./ShareList";
-import { ShareDrawerProps } from "./ShareTypes";
+import { ShareDrawerProps } from "./Share.types";
 
 export const ShareDrawer = ({
   className,

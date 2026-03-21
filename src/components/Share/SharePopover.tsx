@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { ShareList } from "./ShareList";
-import { SharePopoverProps } from "./ShareTypes";
+import { SharePopoverProps } from "./Share.types";
 import { ShareButton } from "./ShareButton";
 
 export const SharePopover = ({

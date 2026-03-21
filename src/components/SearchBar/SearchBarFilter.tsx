@@ -5,7 +5,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { ResetButton } from "./ResetButton";
-import { type SearchBarFilterProps } from "./SearchBarTypes";
+import { type SearchBarFilterProps } from "./SearchBar.types";
 
 export const SearchBarFilter = ({
   id,

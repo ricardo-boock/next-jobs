@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ShareDrawer } from "./ShareDrawer";
 import { SharePopover } from "./SharePopover";
-import { ShareProps } from "./ShareTypes";
+import { ShareProps } from "./Share.types";
 
 export const Share = ({
   title,

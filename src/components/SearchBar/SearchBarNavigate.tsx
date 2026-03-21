@@ -7,7 +7,7 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { ResetButton } from "./ResetButton";
-import { type SearchBarNavigateProps } from "./SearchBarTypes";
+import { type SearchBarNavigateProps } from "./SearchBar.types";
 
 export const SearchBarNavigate = ({
   className,
