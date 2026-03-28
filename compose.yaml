@@ -1,0 +1,33 @@
+services:
+  app-dev:
+    build:
+      context: .
+      target: dev
+    image: next-jobs:dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run dev
+    profiles: ["dev"]
+
+  app-prod:
+    build:
+      context: .
+      target: runner
+      args:
+        REMOTIVE_API: ${REMOTIVE_API}
+    image: next-jobs:prod
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+    profiles: ["prod"]
