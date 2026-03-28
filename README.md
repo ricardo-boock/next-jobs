@@ -46,31 +46,54 @@ Deployed on [Vercel](https://next-jobs-cyan.vercel.app/).
 - ESLint
 - Prettier
 - TypeScript
+- Vitest (unit testing)
 
 ### Deployment
 - Vercel
 
 ---
 
-## 🛠 DevOps / CI/CD
+## DevOps / CI/CD
 
-This project also demonstrates modern **CI/CD and containerization workflows**:
+This project demonstrates a modern **CI/CD pipeline with automated testing and containerization**.
 
 ### Continuous Integration (CI)
+
 - GitHub Actions workflow automatically:
   - installs dependencies
+  - runs unit tests (Vitest)
   - builds the application
   - builds a Docker production image
 - Runs on:
-  - pushes to branches
+  - pushes to all branches
   - pull requests
 
+👉 **Important:**  
+The pipeline is structured so that:
+
+```text
+Run tests → if tests pass → build Docker image → (main only) push image
+```
+
+- If tests fail ❌ → the workflow stops
+- No Docker image is created or published
+
+This ensures:
+- code quality is validated before deployment
+- broken code never reaches production artifacts
+
+---
+
 ### Continuous Deployment (CD)
+
 - Docker image is automatically published to **GitHub Container Registry (GHCR)**
 - Only the `main` branch triggers production image publishing
 - Uses secure GitHub Actions secrets for environment variables
 
+---
+
 ### Docker / Containerization
+
 - Multi-stage Dockerfile:
   - `dev` stage for development
   - `builder` stage for optimized build
@@ -80,18 +103,44 @@ This project also demonstrates modern **CI/CD and containerization workflows**:
   - build-time
   - runtime
 
+---
+
+### CI/CD Strategy (Real-world approach)
+
+- **Feature branches**
+  - run tests ✅
+  - build Docker image ✅
+  - do NOT publish ❌
+
+- **Main branch**
+  - run tests ✅
+  - build Docker image ✅
+  - publish to GHCR 🚀
+
+This mirrors real-world engineering practices:
+- CI validates every change
+- CD only releases stable code
+
+---
+
 ### Image Distribution
+
 - Images are versioned and tagged automatically:
   - `latest` (main branch)
-  - branch / commit tags
+  - commit SHA tags
 - Publicly available via GHCR
 
+---
+
 ### Why this matters
-This setup reflects real-world practices:
+
+This setup reflects production-level practices:
+
+- automated testing before release
 - reproducible builds
-- automated deployments
-- separation of dev and prod environments
+- separation of CI and CD
 - secure handling of secrets
+- reliable deployment pipeline
 
 ---
 
@@ -175,5 +224,6 @@ Ricardo Boock
 - Filtering and sorting logic
 - Responsive UI design
 - TypeScript
+- Unit testing with Vitest
 - CI/CD with GitHub Actions
 - Docker & containerization
