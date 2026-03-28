@@ -1,10 +1,10 @@
-name: Build Docker image
+name: CI / Docker
 
 on:
   push:
     branches:
       - main
-      - development
+      - develop
       - "feature/**"
       - "bugfix/**"
       - "hotfix/**"
@@ -15,8 +15,29 @@ permissions:
   packages: write
 
 jobs:
-  docker:
+  test:
+    name: Test
     runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Vitest
+        run: npm run test
+
+  docker:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
