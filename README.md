@@ -13,54 +13,87 @@ Deployed on [Vercel](https://next-jobs-cyan.vercel.app/).
 
 ## Features
 
-- **Browse remote job listings**
-- **Search jobs by keywords**
-- **Filter by category and company**
-- **Sort jobs by:**
-  - newest
-  - oldest
-  - title
-- **Save favorite jobs** (stored in localStorage)
-- **Responsive UI** (desktop + mobile)
-- **Mobile navigation drawer**
-- **Clean card-based job layout**
-- **Accessible UI components**
+- Browse remote job listings
+- Search jobs by keywords
+- Filter by category and company
+- Sort jobs (newest, oldest, title)
+- Save favorite jobs (localStorage)
+- Responsive UI (desktop + mobile)
+- Accessible UI components
 
 ## Tech Stack
 
 ### Framework
-
 - Next.js (App Router)
 
 ### Language
-
 - TypeScript
 
 ### UI
-
 - React
 - Tailwind CSS
 - shadcn/ui
 - Lucide Icons
 
 ### State / Data
-
 - React Hooks
 - Browser localStorage
 
 ### APIs
-
 - Remotive Jobs API
 
 ### Tooling
-
 - ESLint
 - Prettier
 - TypeScript
 
 ### Deployment
-
 - Vercel
+
+---
+
+## 🛠 DevOps / CI/CD
+
+This project also demonstrates modern **CI/CD and containerization workflows**:
+
+### Continuous Integration (CI)
+- GitHub Actions workflow automatically:
+  - installs dependencies
+  - builds the application
+  - builds a Docker production image
+- Runs on:
+  - pushes to branches
+  - pull requests
+
+### Continuous Deployment (CD)
+- Docker image is automatically published to **GitHub Container Registry (GHCR)**
+- Only the `main` branch triggers production image publishing
+- Uses secure GitHub Actions secrets for environment variables
+
+### Docker / Containerization
+- Multi-stage Dockerfile:
+  - `dev` stage for development
+  - `builder` stage for optimized build
+  - `runner` stage for lightweight production image
+- Uses Next.js **standalone output** for minimal production footprint
+- Environment variables handled for both:
+  - build-time
+  - runtime
+
+### Image Distribution
+- Images are versioned and tagged automatically:
+  - `latest` (main branch)
+  - branch / commit tags
+- Publicly available via GHCR
+
+### Why this matters
+This setup reflects real-world practices:
+- reproducible builds
+- automated deployments
+- separation of dev and prod environments
+- secure handling of secrets
+
+---
 
 ## Getting Started
 
@@ -88,68 +121,59 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
 
 ## Data Source
 
-Job listings are provided by the **Remotive Jobs API**:
-
-```bash
-https://remotive.com/api/remote-jobs
-```
+[https://remotive.com/api/remote-jobs](https://remotive.com/api/remote-jobs)
 
 All job listing data originates from this external API.
 
+---
+
 ## Favorites System
 
-Users can save jobs as favorites. Favorites are stored locally in the browser using `localStorage`, which includes only:
+Favorites are stored locally in the browser using `localStorage` (only job IDs).
 
-- job ids
-
-No favorites data is transmitted to any server.
+---
 
 ## Deployment
 
-The application is deployed using Vercel. The typical deployment workflow is:
+GitHub → GitHub Actions (CI/CD) → Docker (GHCR) → Vercel
 
-```bash
-GitHub → Vercel → Production
-```
-
-Every push can automatically trigger a new deployment.
+---
 
 ## Legal Notice
 
-This project includes:
+Includes:
+- Impressum
+- Privacy Policy
 
-- **Impressum**
-- **Privacy Policy**
-
-These pages exist to comply with German and EU legal requirements for publicly accessible websites.
+---
 
 ## License
 
-```bash
-© 2026 Ricardo Boock
+© 2026 Ricardo Boock  
 All rights reserved.
-```
 
-This repository is published for portfolio and demonstration purposes only. You may not copy, modify, distribute, or reuse this code without explicit permission from the author.
+---
 
 ## Author
 
-Ricardo Boock
+Ricardo Boock  
+[https://github.com/ricardo-boock](https://github.com/ricardo-boock)
 
-GitHub: [https://github.com/ricardo-boock](https://github.com/ricardo-boock)
+---
 
-## Portfolio
-
-This project demonstrates experience with:
+## Portfolio Highlights
 
 - Next.js App Router
-- component architecture
+- Component architecture
 - React hooks
-- filtering and sorting patterns
-- responsive UI design
+- Filtering and sorting logic
+- Responsive UI design
 - TypeScript
-- modern frontend tooling
+- CI/CD with GitHub Actions
+- Docker & containerization
