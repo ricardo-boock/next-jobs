@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ColorSchemeSwitch from "@/components/ColorSchemeSwitch/ColorSchemeSwitch";
 import { LinkButton } from "@/components/LinkButton/LinkButton";
 import { cn } from "@/lib/utils";
 import { NavbarMobile } from "./NavbarMobile";
@@ -26,6 +27,8 @@ export const Navbar = () => {
         <Link className={cn("font-bold text-xl mr-5 no-underline")} href="/">
           Next Jobs
         </Link>
+
+        <ColorSchemeSwitch />
 
         <div className={cn("hidden md:flex items-center gap-4 flex-1")}>
           {links.map((link) => (
